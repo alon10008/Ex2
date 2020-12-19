@@ -57,4 +57,54 @@
      - shortestPath: based on dijkstra algorithm.
      
      - DFS: used for traversing the graph for isConnected function.
-     - 
+     
+     - initJson: init dwg from json String.
+
+## gameClient
+
+  - frame
+    
+    - Class variables:
+    
+      ```java
+      double xMin,xMax,yMin,yMax;
+      directed_weighted_graph graph;
+      Collection<CL_Pokemon> pokemons;
+      List<Point3D> agents;
+      ```
+      xMin,xMax,yMin,yMax represent the edges of the vertices.
+      agents is List of Point3D that represent the locations of the agents.
+      
+    - Functions:
+    
+      - init: initiate the class variable.
+      - frameLocation: convert the vertices coordinates to pixel coordinates.
+  
+  - Ex2
+    
+    This class run the game.
+    While the game is running, the algorithm check for each agent which is the closest pokemon by DWGraph_Algo.shortestPathDist.
+    Then use DWGraph_algo.shortestPath to determine the path to that pokemon.
+    The algorithm use the move() function every fifth iteration, and constantly when agent is on edge that contain pokemon.
+    
+    - Class variable
+      ```java
+      static int lvl;
+      static long id;
+      game_service game;
+      double xMin,xMax,yMin,yMax;
+      List<CL_Pokemon> pokemons;
+      List<CL_Agent> agents = new ArrayList<>();
+      directed_weighted_graph graph;
+      Frame frame = new Frame();
+      ```
+      
+  
+  ### util
+    
+    - line: represent simple line y=mx+n. Used to find out on which edges the pokemons are.
+      
+    
+  
+      
+    
