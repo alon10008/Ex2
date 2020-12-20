@@ -27,10 +27,21 @@ public class DWGraph_Algo implements dw_graph_algorithms{
     @Override
     public directed_weighted_graph copy() {
         DWGraph_DS g = new DWGraph_DS();
-        g.nodes = new HashMap<Integer,NodeData>(this.dwg.nodes);
-        g.edges = new HashMap<Double,EdgeData>(this.dwg.edges);
+        g.nodes = new HashMap<Integer,NodeData>();
+        Object[] arr = this.dwg.nodes.keySet().toArray();
+        for(int i=0 ; i<arr.length ; i++)
+        {
+            g.nodes.put((int)arr[i],new NodeData((int)arr[i],new GeoLocation(this.dwg.getNode((int)arr[i]).getLocation().x(),this.dwg.getNode((int)arr[i]).getLocation().y(),this.dwg.getNode((int)arr[i]).getLocation().z())));
+        }
+        g.edges = new HashMap<Double,EdgeData>();
+        arr = this.dwg.edges.keySet().toArray();
+        for(int i=0 ; i< arr.length ; i++)
+        {
+            g.edges.put((double)arr[i],new EdgeData(this.dwg.edges.get((double)arr[i]).getSrc(),this.dwg.edges.get((double)arr[i]).getDest(),this.dwg.edges.get((double)arr[i]).getWeight()));
+        }
         g.mc = this.dwg.mc;
         return g;
+
     }
 
     @Override
